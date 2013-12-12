@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HTMLFourTagDefination {
-	private static ArrayList tagList = new ArrayList();
+	private static ArrayList<Tag> tagList = new ArrayList<Tag>();
 	
 	public static Tag[] getTagInfoAsArray(){
 		return (Tag[])tagList.toArray(new Tag[tagList.size()]);
 	}
 	
-	public static List getTagInfoAsList(){
+	public static List<Tag> getTagInfoAsList(){
 		return tagList;
 	}
 	

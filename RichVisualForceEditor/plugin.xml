@@ -69,14 +69,14 @@
       </key>
       
 		  <key
-	      sequence="CTRL+SHIFT+C" 
+	      sequence="CTRL+SHIFT+ALT+C" 
 	      contextId="org.eclipse.ui.contexts.window"
 	      commandId="com.vf.apex.editor.commands.CommitToGit"
 	      schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
 		</key>
 		
 		 <key
-	      sequence="CTRL+SHIFT+P" 
+	      sequence="CTRL+SHIFT+ALT+P" 
 	      contextId="org.eclipse.ui.contexts.window"
 	      commandId="com.vf.apex.editor.commands.PushToGit"
 	      schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">

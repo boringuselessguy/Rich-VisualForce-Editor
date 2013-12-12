@@ -10,7 +10,7 @@ public class Tag {
 
 	private String name;
 	private boolean hasBody;
-	private ArrayList attributes = new ArrayList();
+	private ArrayList<Attribute> attributes = new ArrayList<Attribute>();
 	
 	public Tag(String tagName,boolean hasBody){
 		this.name = tagName;

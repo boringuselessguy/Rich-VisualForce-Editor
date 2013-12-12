@@ -43,8 +43,8 @@ public class ForceTagAssistProcessor implements IContentAssistProcessor {
 		String prev = dim[1];
 		String last = dim[2];
 
-		List list = new ArrayList();
-		List tagList = TagDefinations.getAllTagsDefinationList();
+		List<CompletionProposal> list = new ArrayList<CompletionProposal> ();
+		List<Tag> tagList = TagDefinations.getAllTagsDefinationList();
 
 		if (word.startsWith("<") && !word.equals("</")) {
 			for (int i = 0; i < tagList.size(); i++) {
@@ -113,7 +113,7 @@ public class ForceTagAssistProcessor implements IContentAssistProcessor {
 	private String[] getLastWord(String text) {
 		//System.out.println("getLastWord(Text) -" + text);
 		StringBuffer sb = new StringBuffer();
-		Stack stack = new Stack();
+		Stack<String> stack = new Stack<String>();
 		String word = "";
 		String prevTag = "";
 		String lastTag = "";

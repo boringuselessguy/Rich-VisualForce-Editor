@@ -1,5 +1,6 @@
 package com.vf.apex;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.eclipse.core.commands.Command;
@@ -12,11 +13,10 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
-import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.errors.ConfigInvalidException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.StoredConfig;
-import org.eclipse.jgit.storage.file.FileRepository;
+import org.eclipse.jgit.storage.file.*;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -67,8 +67,12 @@ public class Activator extends AbstractUIPlugin{
 					String repoPath = event.getNewValue().toString();
 			        try {
 			             
-						Git git = new Git( new FileRepository(repoPath + "/.git"));
-						Repository repository = git.getRepository();
+			        	FileRepositoryBuilder builder = new FileRepositoryBuilder();
+			        	Repository repository = builder.setGitDir(new File(repoPath + "/.git"))
+			        	  .readEnvironment() // scan environment GIT_* variables
+			        	  .findGitDir() // scan up the file system tree
+			        	  .build();
+						//Repository repository = git.getRepository();
 						
 						String head = repository.getFullBranch();
 						if (head!=null && head.startsWith("refs/heads/")) {
