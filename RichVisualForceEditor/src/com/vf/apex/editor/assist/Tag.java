@@ -37,6 +37,10 @@ public class Tag {
 		this.attributes.add(new Attribute(attribute));
 	}
 	
+	public void addAttribute(Attribute attribute){
+		this.attributes.add(attribute);
+	}
+	
 	public Attribute[] getAttributes(){
 		return (Attribute[])this.attributes.toArray(new Attribute[this.attributes.size()]);
 	}

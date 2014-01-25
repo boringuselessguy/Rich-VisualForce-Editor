@@ -65,24 +65,17 @@ public class Activator extends AbstractUIPlugin{
 			public void propertyChange(PropertyChangeEvent event) {
 				if(event.getProperty().startsWith("REPOSITORY")){
 					String repoPath = event.getNewValue().toString();
-			        try {
-			             
+			        try { 
 			        	FileRepositoryBuilder builder = new FileRepositoryBuilder();
 			        	Repository repository = builder.setGitDir(new File(repoPath + "/.git"))
 			        	  .readEnvironment() // scan environment GIT_* variables
 			        	  .findGitDir() // scan up the file system tree
-			        	  .build();
-						//Repository repository = git.getRepository();
-						
+			        	  .build();						
 						String head = repository.getFullBranch();
 						if (head!=null && head.startsWith("refs/heads/")) {
 						        System.out.println("Current branch is " + repository.getBranch());
-						        //Map<String, Ref> allRefs = repository.getAllRefs();
-						        //Set<ObjectId> additionalHaves = repository.getAdditionalHaves();
 						        StoredConfig config = repository.getConfig();
 								config.load();
-								//RepositoryState repositoryState = repository.getRepositoryState();
-								//Map<String, Ref> tags = repository.getTags();
 								System.out.println("GIT COnfig: " + config);
 						}else{
 							MessageDialog.openError(getDefault().getWorkbench().getActiveWorkbenchWindow().getShell() , "Project Git Repository is not a valid repository", "Project Git Repository is not a valid repository. \n ProjectName: " + event.getProperty() + "\n Path: " + event.getNewValue());
