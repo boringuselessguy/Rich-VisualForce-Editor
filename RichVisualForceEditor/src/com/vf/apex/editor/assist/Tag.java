@@ -10,6 +10,7 @@ public class Tag {
 
 	private String name;
 	private boolean hasBody;
+	private boolean simple;
 	private ArrayList<Attribute> attributes = new ArrayList<Attribute>();
 	
 	public Tag(String tagName,boolean hasBody){
@@ -29,6 +30,10 @@ public class Tag {
 		return this.name;
 	}
 	
+	public void setTagName(String tagName){
+		this.name = tagName;
+	}
+	
 	public boolean hasBody(){
 		return this.hasBody;
 	}
@@ -43,5 +48,13 @@ public class Tag {
 	
 	public Attribute[] getAttributes(){
 		return (Attribute[])this.attributes.toArray(new Attribute[this.attributes.size()]);
+	}
+
+	public boolean getSimple() {
+		return simple;
+	}
+
+	public void setSimple(boolean simple) {
+		this.simple = simple;
 	}
 }

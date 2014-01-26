@@ -12,6 +12,7 @@ public class XMLDocumentProvider extends FileDocumentProvider {
 
 	protected IDocument createDocument(Object element) throws CoreException {
 		IDocument document = super.createDocument(element);
+		//document.
 		if (document != null) {
 			IDocumentPartitioner partitioner =
 				new FastPartitioner(

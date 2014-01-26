@@ -1,7 +1,12 @@
 package com.vf.apex.editor.assist;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.eclipsesource.json.*;
 
 /**
  * 
@@ -17,9 +22,64 @@ public class VisualForceTagDefinition {
 	}
 	
 	public static List<Tag> getTagInfoAsList(){
+		List<Tag> tagList = new ArrayList<Tag>();
+		String tags = readtagFile();
+		JsonObject jsonObject = JsonObject.readFrom( tags );
+		JsonArray jsonArray = (JsonArray) jsonObject.get("tags");
+		for (int i = 0; i < jsonArray.size(); i++) {			
+			JsonObject jTagObject = (JsonObject) jsonArray.get(i);
+			String tagName = jTagObject.get( "tagName" ).asString();
+			Boolean tagType = jTagObject.get( "simple" ).asBoolean();
+			Tag tag = new Tag(tagName, true);
+			tag.setSimple(tagType);
+			Attribute attribute = new Attribute();
+			JsonArray jTagAttribsArray = (JsonArray) jTagObject.get("attribs");
+			for (int j = 0; j < jTagAttribsArray.size(); j++) {
+				attribute = new Attribute();
+				JsonObject jTagAttrib = (JsonObject) jTagAttribsArray.get(j);
+				String attribName = jTagAttrib.get( "attribName" ).asString();
+				String attribType = jTagAttrib.get( "type" ).asString();
+				attribute.setAttribType(attribType);
+				attribute.setName(attribName);
+				ArrayList<String> attribValues = new ArrayList<String>();
+				JsonArray jTagAttribValuesArray = (JsonArray) jTagAttrib.get("values");
+				if(jTagAttribValuesArray != null) { 
+					attribute.setHasValue(true);					
+					for (int k = 0; k < jTagAttribValuesArray.size(); k++) {
+						attribValues.add(jTagAttribValuesArray.get(k).asString());
+					}
+				} else {
+					attribute.setHasValue(false);
+				}
+				attribute.setValues(attribValues);
+				tag.addAttribute(attribute);
+			}
+			tagList.add(tag);
+		}		
 		return tagList;
 	}
 	
+	public static String readtagFile(){
+		String everything = "";
+		BufferedReader br;	
+	    try {	    	
+	    	br = new BufferedReader(new InputStreamReader(ClassLoader.getSystemClassLoader().getResourceAsStream("com/vf/apex/editor/tags.json")));
+	        StringBuilder sb = new StringBuilder();
+	        String line = br.readLine();
+
+	        while (line != null) {
+	            sb.append(line);
+	            sb.append(System.lineSeparator());
+	            line = br.readLine();
+	        }
+	        everything = sb.toString();
+	        br.close();
+	    } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	    } 
+	    return everything;
+	}
 	
 	static {
 		

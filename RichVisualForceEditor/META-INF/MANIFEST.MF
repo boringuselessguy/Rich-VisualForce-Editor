@@ -5,6 +5,7 @@ Bundle-SymbolicName: RichVisualForceEditor; singleton:=true
 Bundle-Version: 1.0.4.qualifier
 Bundle-Activator: com.vf.apex.Activator
 Require-Bundle: org.eclipse.ui,
+ org.eclipse.ui.ide,
  org.eclipse.core.runtime,
  org.eclipse.jface.text,
  org.eclipse.ui.editors,

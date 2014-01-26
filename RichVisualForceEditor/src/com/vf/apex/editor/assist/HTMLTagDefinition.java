@@ -3,7 +3,7 @@ package com.vf.apex.editor.assist;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HTMLFourTagDefination {
+public class HTMLTagDefinition {
 	private static ArrayList<Tag> tagList = new ArrayList<Tag>();
 	
 	public static Tag[] getTagInfoAsArray(){

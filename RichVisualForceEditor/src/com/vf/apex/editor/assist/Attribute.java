@@ -17,61 +17,84 @@ public class Attribute {
 	private boolean hasValue;
 	private ArrayList<String> values;
 	
+	public Attribute(){
+		this.setName("");
+		this.setHasValue(true);
+		this.setAttribType("String");
+		this.setValues(new ArrayList<String>());
+	}
+	
 	public Attribute(String attributeName){
-		this.name = attributeName;
-		this.hasValue = true;
-		this.attribType = "String";
-		this.values = new ArrayList<String>();
+		this.setName(attributeName);
+		this.setHasValue(true);
+		this.setAttribType("String");
+		this.setValues(new ArrayList<String>());
 	}
 	
 	public Attribute(String attributeName, ArrayList<String> values){
-		this.name = attributeName;
-		this.hasValue = true;
-		this.attribType = "String";
-		this.values = values;
+		this.setName(attributeName);
+		this.setHasValue(true);
+		this.setAttribType("String");
+		this.setValues(values);
 	}
 	
 	public Attribute(String attributeName,boolean hasValue){
-		this.name = attributeName;
-		this.hasValue = hasValue;
-		this.attribType = "String";
-		this.values = new ArrayList<String>();
+		this.setName(attributeName);
+		this.setHasValue(hasValue);
+		this.setAttribType("String");
+		this.setValues(new ArrayList<String>());
 	}
 	
 	public Attribute(String attributeName,boolean hasValue, String attribType){
-		this.name = attributeName;
-		this.hasValue = hasValue;
-		this.attribType = attribType;
-		this.values = new ArrayList<String>();
+		this.setName(attributeName);
+		this.setHasValue(hasValue);
+		this.setAttribType(attribType);
+		this.setValues(new ArrayList<String>());
 	}
 	
 	public Attribute(String attributeName,boolean hasValue, ArrayList<String> values){
-		this.name = attributeName;
-		this.hasValue = hasValue;
-		this.attribType = "String";
-		this.values = values;
+		this.setName(attributeName);
+		this.setHasValue(hasValue);
+		this.setAttribType("String");
+		this.setValues(values);
 	}
 	
 	public Attribute(String attributeName,boolean hasValue, String attribType, ArrayList<String> values){
-		this.name = attributeName;
-		this.hasValue = hasValue;
-		this.attribType = attribType;
-		this.values = values;
+		this.setName(attributeName);
+		this.setHasValue(hasValue);
+		this.setAttribType(attribType);
+		this.setValues(values);
 	}
 	
 	public String getName(){
 		return this.name;
 	}
-	
-	public boolean hasValue(){
-		return this.hasValue;
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public String getAttribType(){
 		return this.attribType;
 	}
 	
+	public void setAttribType(String attribType) {
+		this.attribType = attribType;
+	}
+
+	public boolean hasValue(){
+		return this.hasValue;
+	}
+
+	public void setHasValue(boolean hasValue) {
+		this.hasValue = hasValue;
+	}
+	
 	public ArrayList<String> getValues(){
 		return this.values;
+	}
+
+	public void setValues(ArrayList<String> values) {
+		this.values = values;
 	}
 }

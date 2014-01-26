@@ -44,7 +44,7 @@ public class ForceTagAssistProcessor implements IContentAssistProcessor {
 		String last = dim[2];
 
 		List<CompletionProposal> list = new ArrayList<CompletionProposal> ();
-		List<Tag> tagList = TagDefinations.getAllTagsDefinationList();
+		List<Tag> tagList = TagDefinitions.getAllTagsDefinitionList();
 
 		if (word.startsWith("<") && !word.equals("</")) {
 			for (int i = 0; i < tagList.size(); i++) {
